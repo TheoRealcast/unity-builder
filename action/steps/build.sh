@@ -75,8 +75,8 @@ fi
 echo Running as `whoami`
 
 # Make sure unity3d folder has proper permission
-sudo -u root chown -R runner:runner $HOME/
-sudo -u root mkdir -p $HOME/.config/unity3d/cache
+
+mkdir -p $HOME/.config/unity3d/cache
  
 touch $HOME/.config/unity3d/upm.log
 chmod -R 777 $HOME/.config/unity3d
@@ -118,7 +118,9 @@ echo "#    Building platform    #"
 echo "###########################"
 echo ""
 
-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
+chown -R runner:runner /github/home/
+
+sudo -H -u runner bash -c `xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
   /opt/Unity/Editor/Unity \
     -batchmode \
     -logfile /dev/stdout \
@@ -135,7 +137,7 @@ xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
     -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
     -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
     -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
-    $CUSTOM_PARAMETERS
+    $CUSTOM_PARAMETERS`
 
 # Catch exit code
 BUILD_EXIT_CODE=$?
