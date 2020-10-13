@@ -75,18 +75,12 @@ fi
 echo Running as `whoami`
 
 # Make sure unity3d folder has proper permission
-mkdir -p $HOME/.config/unity3d/cache
+sudo -u root chown -R runner:runner $HOME/
+sudo -u root mkdir -p $HOME/.config/unity3d/cache
+ 
 touch $HOME/.config/unity3d/upm.log
 chmod -R 777 $HOME/.config/unity3d
 ls -alhR $HOME/.config/unity3d
-
-# Make sure .ssh folder exists
-mkdir -p $HOME/.ssh
-chmod 700 $HOME/.ssh
-
-# Setup ssh private key
-echo $SSH_PRIVATE_KEY > $HOME/.ssh/id_rsa
-ls -alhR $HOME/.ssh
 
 #
 # Display custom parameters
