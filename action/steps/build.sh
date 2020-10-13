@@ -120,7 +120,7 @@ echo ""
 
 chown -R 1000:1000 /github/home/
 
-sudo -H -u runner bash -c `xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
+su - runner -c `xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
   /opt/Unity/Editor/Unity \
     -batchmode \
     -logfile /dev/stdout \
