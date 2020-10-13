@@ -72,6 +72,18 @@ else
   echo "Created Android keystore."
 fi
 
+# Make sure unity3d folder has proper permission
+mkdir -p $HOME/.config/unity3d/cache
+touch $HOME/.config/unity3d/upm.log
+chmod -R ug+rw $HOME/.config/unity3d
+
+# Make sure .ssh folder exists
+mkdir -p $HOME/.ssh
+chmod 700 $HOME/.ssh
+
+# Setup ssh private key
+echo $SSH_PRIVATE_KEY > $HOME/.ssh/id_rsa
+
 #
 # Display custom parameters
 #
