@@ -25,4 +25,4 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh 
 ENTRYPOINT ["/entrypoint.sh"]
 
-#USER $UID:$GID
+USER $UID:$GID
