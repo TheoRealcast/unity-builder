@@ -17,6 +17,9 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 RUN bash -c 'mkdir -p /github/{home,workflow,workspace}' && chown $UID:$GID -R /github/
 RUN getent group $GID || groupadd -g $GID $UNAME
 RUN id -u $UID &>/dev/null || useradd -m -u $UID -g $GID -s /bin/bash -d /github/home $UNAME
+RUN echo "runner:x:1000:" >> /etc/groups
+RUN echo "runner:x:1000:1000:runner:/github/home:/bin/false" >> /etc/passwd
+
 
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps

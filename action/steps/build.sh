@@ -72,16 +72,6 @@ else
   echo "Created Android keystore."
 fi
 
-echo Running as `whoami`
-
-# Make sure unity3d folder has proper permission
-
-mkdir -p $HOME/.config/unity3d/cache
- 
-touch $HOME/.config/unity3d/upm.log
-chmod -R 777 $HOME/.config/unity3d
-ls -alhR $HOME/.config/unity3d
-
 #
 # Display custom parameters
 #
@@ -118,9 +108,7 @@ echo "#    Building platform    #"
 echo "###########################"
 echo ""
 
-chown -R 1000:1000 /github/home/
-
-su - runner -c `xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
+xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
   /opt/Unity/Editor/Unity \
     -batchmode \
     -logfile /dev/stdout \
@@ -137,7 +125,7 @@ su - runner -c `xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
     -androidKeystorePass "$ANDROID_KEYSTORE_PASS" \
     -androidKeyaliasName "$ANDROID_KEYALIAS_NAME" \
     -androidKeyaliasPass "$ANDROID_KEYALIAS_PASS" \
-    $CUSTOM_PARAMETERS`
+    $CUSTOM_PARAMETERS
 
 # Catch exit code
 BUILD_EXIT_CODE=$?
