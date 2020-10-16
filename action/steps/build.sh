@@ -102,6 +102,8 @@ echo ""
 
 ls -alh $UNITY_PROJECT_PATH
 
+printenv
+
 echo ""
 echo "###########################"
 echo "#    Building platform    #"
