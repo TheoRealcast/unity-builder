@@ -4,8 +4,6 @@
 # Set project path
 #
 
-su runner
-
 UNITY_PROJECT_PATH="$GITHUB_WORKSPACE/$PROJECT_PATH"
 echo "Using project path \"$UNITY_PROJECT_PATH\"."
 
@@ -104,16 +102,13 @@ echo ""
 
 ls -alh $UNITY_PROJECT_PATH
 
-printenv
-
 echo ""
 echo "###########################"
 echo "#    Building platform    #"
 echo "###########################"
 echo ""
 
-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24' \
-  /opt/Unity/Editor/Unity \
+/opt/Unity/Editor/Unity \
     -batchmode \
     -logfile /dev/stdout \
     -quit \
