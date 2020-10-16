@@ -2,8 +2,8 @@ ARG IMAGE
 FROM $IMAGE
 
 ARG UNAME=runner
-ARG UID=1000
-ARG GID=1000
+ARG UID=1001
+ARG GID=1001
 
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
